@@ -194,8 +194,8 @@ class modes_radio (gr.top_block, pubsub):
 
         if actual_rate < 4.0e6:
             gcd = fractions.gcd(4.0e6, actual_rate)
-            interp = 4.0e6 / gcd
-            decim = actual_rate / gcd
+            interp = int(4.0e6 / gcd)
+            decim = int(actual_rate / gcd)
             lpfiltcoeffs = filter.firdes.low_pass(1, interp*actual_rate, 1.6e6, 300e3)
             self._resample = filter.rational_resampler_ccf(interpolation=interp,
                                                            decimation=decim,
